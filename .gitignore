@@ -9,7 +9,7 @@ build/
 .apt_generated
 .classpath
 .factorypath
-.project
+#.project
 .settings
 .springBeans
 .sts4-cache
@@ -38,6 +38,7 @@ out/
 
 .DS_Store
 bin
+.gradle
 build
 target
 *.war

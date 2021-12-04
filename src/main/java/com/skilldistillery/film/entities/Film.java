@@ -19,6 +19,7 @@ public class Film {
 	private String language;
 	private String specialFeatures;
 	private String category;
+	private int category_id;
 	
 	public Film() {
 		super();
@@ -213,5 +214,13 @@ public class Film {
 				&& Double.doubleToLongBits(rentalRate) == Double.doubleToLongBits(other.rentalRate)
 				&& Double.doubleToLongBits(replacementCost) == Double.doubleToLongBits(other.replacementCost)
 				&& Objects.equals(specialFeatures, other.specialFeatures) && Objects.equals(title, other.title);
+	}
+
+	public int getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
 	}
 }

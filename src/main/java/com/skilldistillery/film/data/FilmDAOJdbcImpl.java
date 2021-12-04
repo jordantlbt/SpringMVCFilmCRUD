@@ -37,8 +37,9 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				Connection conn = DriverManager.getConnection(URL, user, pass);
 
 				String sql = "SELECT DISTINCT film.id, film.title, description, release_year, language_id, rental_duration,"
-						+ "rental_rate, length, replacement_cost, rating, special_features, language.name, cateogry.name "
+						+ "rental_rate, length, replacement_cost, rating, special_features, language.name, category.name, film_category.category_id "
 						+ " FROM film JOIN language ON film.language_id = language.id" 
+						+ " JOIN film_category ON film.id = film_category.film_id "
 						+ " JOIN category ON film_category.category_id = category.id WHERE film.id = ?";
 				PreparedStatement stmt = conn.prepareStatement(sql);
 				stmt.setInt(1, filmID);
@@ -58,7 +59,8 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 					film.setSpecialFeatures(rs.getString("special_features"));
 					film.setLanguage(rs.getString("language.name"));
 					film.setActors(findActorsByFilmID(rs.getInt("film.id")));
-					film.setCategory(rs.getString("film_category"));
+					film.setCategory(rs.getString("category.name"));
+					film.setCategory_id(rs.getInt("film_category.category_id"));
 				}
 				rs.close();
 				stmt.close();

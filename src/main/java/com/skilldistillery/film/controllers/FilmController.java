@@ -17,6 +17,12 @@ public class FilmController {
 	@Autowired
 	private FilmDAO filmDao;
 	
+	@RequestMapping({"/","home.do"})
+	public String home(Model model) {
+		model.addAttribute("Hello");
+		return "home";
+	}
+	
 	@RequestMapping(path = "searchkeyword.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView getFilmByKeyword(String keyword) {
 		ModelAndView mv = new ModelAndView();
@@ -40,12 +46,12 @@ public class FilmController {
 		return mv;
 	}
 	
-//	@RequestMapping(path = "KeywordSearch.do", params = "keyword", method = RequestMethod.GET)
-//	public ModelAndView getFilmByKeyword(String keyword) {
-//		ModelAndView mv = new ModelAndView();
-//
-//		return mv;
-//	}
+	@RequestMapping(path = "createfilm.do", method = RequestMethod.GET)
+	public ModelAndView createFilm(String keyword) {
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
 //	
 //	@RequestMapping(path = "KeywordSearch.do", params = "keyword", method = RequestMethod.GET)
 //	public ModelAndView getFilmByKeyword(String keyword) {

@@ -1,8 +1,10 @@
 # SpringMVCFilmCRUD
 
-## Overview
+## Overview 
 
-## Technologies Used
+## Technologies Used 
 
-## What I learned
+## Lessons Learned 
+
+## Team
 

@@ -4,11 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.skilldistillery.film.data.FilmDAO;
 import com.skilldistillery.film.entities.Film;
 
@@ -19,16 +16,15 @@ public class FilmController {
 	private FilmDAO filmDao;
 	
 	@RequestMapping({"/","home.do"})
-	public String home(Model model) {
-		model.addAttribute("Hello");
+	public String home() {
 		return "home";
 	}
 //	searches filmDB by keyword 
 	@RequestMapping(path = "searchkeyword.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView getFilmByKeyword(String keyword) {
 		ModelAndView mv = new ModelAndView();
-		List<Film> film = filmDao.findFilmByKeyword(keyword);
-		mv.addObject("films", film);
+		List<Film> films = filmDao.findFilmByKeyword(keyword);
+		mv.addObject("films", films);
 		mv.setViewName("result");
 		return mv;
 	}
@@ -42,7 +38,7 @@ public class FilmController {
 		} else {
 			film = filmDao.findCreatedFilmById(filmID);
 		}
-		mv.addObject("films", film);
+		mv.addObject("film", film);
 		mv.setViewName("result");
 		return mv;
 	}
@@ -66,26 +62,27 @@ public class FilmController {
 		return mv;
 	}
 	
-//	search for updated film 
-	@RequestMapping(path = "updatefilm.do", method = RequestMethod.POST)
-	public ModelAndView getUpdateDFilm(@ModelAttribute("film") Film film) {
-		ModelAndView mv = new ModelAndView();
-		int searchFilmID = film.getfilmID();
-		if (searchFilmID <= 1000) {
-			film = filmDao.findFilmByID(searchFilmID);
-		} else {
-			film = filmDao.findCreatedFilmById(searchFilmID);
-		}
-		filmDao.updateFilm(film); 
-		mv.setViewName("result");
-		return mv;
-	}
-	
-//	@RequestMapping(path = "KeywordSearch.do", params = "keyword", method = RequestMethod.GET)
-//	public ModelAndView getFilmByKeyword(String keyword) {
+////	view film properties
+//	@RequestMapping(path = "viewfilmprops.do", method = RequestMethod.POST)
+//	public ModelAndView viewfilmprops(@ModelAttribute("film") Film film) {
 //		ModelAndView mv = new ModelAndView();
-//	
+//		int searchFilmID = film.getfilmID();
+//		if (searchFilmID <= 1000) {
+//			film = filmDao.findFilmByID(searchFilmID);
+//		} else {
+//			film = filmDao.findCreatedFilmById(searchFilmID);
+//		}
+//		filmDao.updateFilm(film); 
+//		mv.setViewName("result"); //change redirected page 
 //		return mv;
 //	}
-
+	
+	@RequestMapping(path = "deletefilm.do", method = RequestMethod.POST)
+	public ModelAndView deletefilm(@ModelAttribute("film") int filmID) {
+		ModelAndView mv = new ModelAndView();
+		Film film = filmDao.findCreatedFilmById(filmID);
+		mv.addObject("deletedFilm", filmDao.deleteFilm(film));
+		mv.setViewName("result"); //change redirected page
+		return mv;
+	}
 }

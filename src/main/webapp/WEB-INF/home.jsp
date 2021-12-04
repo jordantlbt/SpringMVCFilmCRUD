@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>Mock Buster</h1>
+<h1>Mock Buster</h1>a
 
 <h2> Welcome to MockBuster online!</h2>
 
@@ -18,13 +18,13 @@
 
 <h3>Find a film by id</h3>
 	<form action="searchid.do" method="GET">
-		<input type="text" name="id" size="5"/> 
-		<input type="submit" value="Get Film" />
+		<input type="number" name="filmID" size="5"/> 
+		<input type="submit" value="Get Film" />   <!--name="~~" must match params in FilmController -->
 	</form>
 
 <h3>Find a film by keyword</h3>
 	<form action="searchkeyword.do" method="GET">
-		<input type="text" name="id" size="8"/> 
+		<input type="text" name="keyword" size="8"/> 
 		<input type="submit" value="Get Film" />
 	</form>
 
@@ -72,4 +72,4 @@
 	</form>	
 
 </body>
-</html>
+</html> 

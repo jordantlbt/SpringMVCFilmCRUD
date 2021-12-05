@@ -14,7 +14,7 @@
    
       <ul>
         <c:forEach var="film" items="${films}">
-     			 <li>${film.filmID}</li>  <!--Film entity: filmID  -->
+     			<li>${film.filmID}</li>  <!--Film entity: filmID  -->
 				<li>${film.title}</li>
 				<li>${film.description}</li>
 				<li>${film.releaseYear}</li>
@@ -27,29 +27,29 @@
 				<li>${film.specialFeatures}</li>
 				<li>${film.category}</li> 
       <br/><br/>
- 
+        <form action="updatefilm.do" method="GET">
+    <input type="submit" name="film" value= "${film.filmID}" /> 
+    <input type="Update Film"/>
+         </form>
+         <br/>
+  
+        <form action="deletefilm.do" method="POST">
+    <input type="submit" name="film" value= "${film.filmID }" /> 
+   <input type="Delete a Film" />
+    </form>
+ <br/>
         </li>
         
     </c:forEach>
       </ul>
       
         <form action="searchid.do" method="GET">
-    <input type="hidden" name="id" value= "${film.filmID }" /> 
-    <input type="submit"/>
+    <input type="submit" name="id" value= "${film.filmID }" /> 
+    <input type="Search Films"/>
         </form>
         <br/>
         
-        <form action="updatefilm.do" method="GET">
-    <input type="hidden" name="film" value= "${film.filmID}" /> 
-    <input type="submit"/>
-         </form>
-         <br/>
-  
-        <form action="deletefilm.do" method="POST">
-    <input type="hidden" name="film" value= "${film.filmID }" /> 
-   <input type="submit" />
-    </form>
- <br/>
+ 
       </c:when>
     <c:otherwise>
       <p>No films found</p>

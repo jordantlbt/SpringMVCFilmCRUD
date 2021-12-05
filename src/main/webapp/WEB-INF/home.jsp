@@ -52,7 +52,8 @@
 
 <h3>Add a film</h3>
 	
-	<a href="createFilm.jsp">Add a film</a>
+	<form action="createFilm.do" method="GET">
+		<input type="submit" value="Add A Film"/>
 	
 
 <h3>Delete a film</h3>

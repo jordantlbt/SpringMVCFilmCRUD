@@ -179,19 +179,18 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				
 				String sqlInsertFilm = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, "
 						+ "replacement_cost, rating, special_features)" 
-						+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
+						+ " VALUES (?,?,?,1,?,?,?,?,?,?)";
 
 				PreparedStatement stmt = conn.prepareStatement(sqlInsertFilm, Statement.RETURN_GENERATED_KEYS);
 				stmt.setString(1, film.getTitle());
 				stmt.setString(2, film.getDescription());
 				stmt.setInt(3, film.getReleaseYear());
-				stmt.setInt(4, film.getLanguageId());
-				stmt.setInt(5, film.getRentalDuration());
-				stmt.setDouble(6, film.getRentalRate());
-				stmt.setDouble(7, film.getLength());
-				stmt.setDouble(8, film.getReplacementCost());
-				stmt.setString(9, film.getRating());
-				stmt.setString(10, film.getSpecialFeatures());
+				stmt.setInt(4, film.getRentalDuration());
+				stmt.setDouble(5, film.getRentalRate());
+				stmt.setDouble(6, film.getLength());
+				stmt.setDouble(7, film.getReplacementCost());
+				stmt.setString(8, film.getRating());
+				stmt.setString(9, film.getSpecialFeatures());
 
 				int updateCount = stmt.executeUpdate(); 
 				if (updateCount == 1) {
@@ -205,19 +204,19 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 							stmt.setInt(1, newfilmId);
 							updateCount = stmt.executeUpdate();
 						}
-						if (film.getActors() != null && film.getActors().size() > 0) {
-							String sqlInsertActors = "INSERT INTO film_actor (film_id, actor_id) values(?, ?)"; 
-							stmt = conn.prepareStatement(sqlInsertActors, Statement.RETURN_GENERATED_KEYS);
-							for (Actor actor : film.getActors()) {
-								stmt.setInt(1, film.getfilmID());
-								stmt.setInt(2, actor.getId());
-								stmt.executeUpdate();
-							}
+//						if (film.getActors() != null && film.getActors().size() > 0) {
+//							String sqlInsertActors = "INSERT INTO film_actor (film_id, actor_id) values(?, ?)"; 
+//							stmt = conn.prepareStatement(sqlInsertActors, Statement.RETURN_GENERATED_KEYS);
+//							for (Actor actor : film.getActors()) {
+//								stmt.setInt(1, film.getfilmID());
+//								stmt.setInt(2, actor.getId());
+//								stmt.executeUpdate();
+//							}
 						}
 					}
-				} else {
-					film = null;
-				}
+//				} else {
+//					film = null;
+//				}
 				conn.commit();
 				stmt.close();
 				conn.close();

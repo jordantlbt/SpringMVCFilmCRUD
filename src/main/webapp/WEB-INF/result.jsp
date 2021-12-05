@@ -8,7 +8,7 @@
 <title>Result</title>
 </head>
 <body>
-<a href="searchid.do">Results</a>
+<a>Results</a>
 <c:choose>
     <c:when test="${! empty film}">
       <ul>

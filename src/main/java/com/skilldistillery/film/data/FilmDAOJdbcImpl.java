@@ -37,8 +37,8 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				Connection conn = DriverManager.getConnection(URL, user, pass);
 
 				String sql = "SELECT DISTINCT film.id, film.title, description, release_year, language_id, rental_duration,"
-						+ "rental_rate, length, replacement_cost, rating, special_features, language.name, category.name, film_category.category_id "
-						+ " FROM film JOIN language ON film.language_id = language.id" 
+						+ "rental_rate, length, replacement_cost, rating, special_features, category.name, film_category.category_id"
+						+ " FROM film " 
 						+ " JOIN film_category ON film.id = film_category.film_id "
 						+ " JOIN category ON film_category.category_id = category.id WHERE film.id = ?";
 				PreparedStatement stmt = conn.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 					film.setReplacementCost(rs.getDouble("replacement_cost"));
 					film.setRating(rs.getString("rating"));
 					film.setSpecialFeatures(rs.getString("special_features"));
-					film.setLanguage(rs.getString("language.name"));
+					//film.setLanguage(rs.getString("language.name"));
 					film.setActors(findActorsByFilmID(rs.getInt("film.id")));
 					film.setCategory(rs.getString("category.name"));
 					film.setCategory_id(rs.getInt("film_category.category_id"));
@@ -79,8 +79,8 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				Connection conn = DriverManager.getConnection(URL, user, pass);
 
 				String sql = "SELECT DISTINCT film.id, title, description, release_year, language_id, rental_duration,"
-						+ "rental_rate, length, replacement_cost, rating, special_features, language.name"
-						+ " FROM film JOIN language ON film.language_id = language.id"
+						+ "rental_rate, length, replacement_cost, rating, special_features"
+						+ " FROM film"
 						+ " JOIN film_actor ON film.id = film_actor.film_id"
 						+ " WHERE film.title LIKE ? OR film.description LIKE ?";
 				PreparedStatement stmt = conn.prepareStatement(sql);
@@ -101,7 +101,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 					film.setReplacementCost(rs.getDouble("replacement_cost"));
 					film.setRating(rs.getString("rating"));
 					film.setSpecialFeatures(rs.getString("special_features"));
-					film.setLanguage(rs.getString("language.name"));
+					//film.setLanguage(rs.getString("language.name"));
 					film.setActors(findActorsByFilmID(rs.getInt("film.id")));
 					filmByKeyword.add(film);
 				}
@@ -179,18 +179,19 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				
 				String sqlInsertFilm = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, "
 						+ "replacement_cost, rating, special_features)" 
-						+ " VALUES (?,?,?,1,?,?,?,?,?,?)";
+						+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
 
 				PreparedStatement stmt = conn.prepareStatement(sqlInsertFilm, Statement.RETURN_GENERATED_KEYS);
 				stmt.setString(1, film.getTitle());
 				stmt.setString(2, film.getDescription());
 				stmt.setInt(3, film.getReleaseYear());
-				stmt.setInt(4, film.getRentalDuration());
-				stmt.setDouble(5, film.getRentalRate());
-				stmt.setDouble(6, film.getLength());
-				stmt.setDouble(7, film.getReplacementCost());
-				stmt.setString(8, film.getRating());
-				stmt.setString(9, film.getSpecialFeatures());
+				stmt.setInt(4, film.getLanguageId());
+				stmt.setInt(5, film.getRentalDuration());
+				stmt.setDouble(6, film.getRentalRate());
+				stmt.setDouble(7, film.getLength());
+				stmt.setDouble(8, film.getReplacementCost());
+				stmt.setString(9, film.getRating());
+				stmt.setString(10, film.getSpecialFeatures());
 
 				int updateCount = stmt.executeUpdate(); 
 				if (updateCount == 1) {
@@ -238,16 +239,21 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 			Connection conn = null;
 			
 			try {
-				String sqlFilm = "DELETE FROM film WHERE id = ?";
+				String sqlFilmCategory = "DELETE FROM film_category where film_id = ?"; 
 				String sqlFilmActor = "DELETE FROM film_actor where film_id = ?"; 
+				String sqlFilm = "DELETE FROM film WHERE id = ?";
 				
 				conn = DriverManager.getConnection(URL, user, pass);
 				conn.setAutoCommit(false); // START TRANSACTION
 				
-				PreparedStatement stmt = conn.prepareStatement(sqlFilmActor);
+				PreparedStatement stmt = conn.prepareStatement(sqlFilmCategory);
 				stmt.setInt(1, film.getfilmID());
 				stmt.executeUpdate();
-			
+				
+				stmt = conn.prepareStatement(sqlFilmActor);
+				stmt.setInt(1, film.getfilmID());
+				stmt.executeUpdate();
+
 				stmt = conn.prepareStatement(sqlFilm);
 				stmt.setInt(1, film.getfilmID());
 				stmt.executeUpdate();
@@ -357,9 +363,9 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 				film.setReplacementCost(rs.getDouble("replacement_cost"));
 				film.setRating(rs.getString("rating"));
 				film.setSpecialFeatures(rs.getString("special_features"));
-				film.setLanguage(rs.getString("language.name"));
-				film.setActors(findActorsByFilmID(rs.getInt("film.id")));
-				film.setCategory(rs.getString("film_category"));
+				//film.setLanguage(rs.getString("language.name"));
+				//film.setActors(findActorsByFilmID(rs.getInt("film.id")));
+				//film.setCategory(rs.getString("film_category"));
 			}
 			rs.close();
 			stmt.close();

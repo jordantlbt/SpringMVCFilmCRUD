@@ -47,29 +47,11 @@
 -->	
 	
 	
-	
-<h2>Add a new film</h2>	
-
 <h3>Add a film</h3>
 	
 	<form action="createFilm.do" method="GET">
 		<input type="submit" value="Add A Film"/>
-	
 
-<h3>Delete a film</h3>
-	<form action="deletefilm.do" method="GET">
-		<input type="submit" value="Delete A Film" />
-	</form>	
-
-<h3>Update a film</h3>
-	<form action="updatefilm.do" method="GET">
-		<input type="submit" value="Update A Film" />
-	</form>
-	
-<h3>Search newly created films by film id</h3>
-	<form action="searchid.do" method="GET">
-		<input type="text" name="id" size="8"/> 
-		<input type="submit" value="Search New Films" />
 	</form>	
 
 </body>

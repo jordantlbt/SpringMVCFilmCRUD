@@ -81,12 +81,19 @@ public class FilmController {
 //		return mv;
 //	}
 	
-	@RequestMapping(path = "deletefilm.do", method = RequestMethod.POST)
-	public ModelAndView deletefilm(@ModelAttribute("film") int filmID) {
+	@RequestMapping(path = "deletefilm.do",  method = RequestMethod.GET)
+	public ModelAndView deletefilm(int filmID) {
 		ModelAndView mv = new ModelAndView();
-		Film film = filmDao.findCreatedFilmById(filmID);
-		mv.addObject("deletedFilm", filmDao.deleteFilm(film));
-		mv.setViewName("result"); //change redirected page
-		return mv;
+		Film film = filmDao.findFilmByID(filmID);
+		filmDao.deleteFilm(film);
+		if(filmDao.findFilmByID(film.getfilmID()) == null) {
+			mv.setViewName("deleteFilm"); //change redirected page
+			return mv;
+		}
+
+			mv.setViewName("unsuccessful");
+			return mv;
+		
 	}
+
 }

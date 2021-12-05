@@ -19,7 +19,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 		private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 		private static final String user = "student";
-		private static final String pass = "root"; //change to student 
+		private static final String pass = "student"; //change to student 
 
 		static {
 			try {

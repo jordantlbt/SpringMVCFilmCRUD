@@ -25,7 +25,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		List<Film> films = filmDao.findFilmByKeyword(keyword);
 		mv.addObject("films", films);
-		mv.setViewName("result");
+		mv.setViewName("filmByKeyword");
 		return mv;
 	}
 //	searches filmDB by id 
@@ -43,7 +43,7 @@ public class FilmController {
 		return mv;
 	}
 //	prompts to create film
-	@RequestMapping(path = "createfilm.do", method = RequestMethod.POST)
+	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST)
 	public ModelAndView createFilm(@ModelAttribute("film") Film film) {
 		ModelAndView mv = new ModelAndView();
 		Film createdFilm = filmDao.createFilm(film);

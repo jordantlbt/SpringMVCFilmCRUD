@@ -19,6 +19,10 @@ public class FilmController {
 	public String home() {
 		return "home";
 	}
+	@RequestMapping({"createFilm.do"})
+	public String createFilm() {
+		return "createFilm";
+	}
 //	searches filmDB by keyword 
 	@RequestMapping(path = "searchkeyword.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView getFilmByKeyword(String keyword) {

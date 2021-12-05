@@ -23,7 +23,11 @@
 				<li>Special Features: ${film.specialFeatures}</li>
 				<li>Category: ${film.category}</li>
 				<li>Replacement Cost: ${film.replacementCost}</li>
+				
 			</ul>
+				<form action="deletefilm.do" method="GET">
+		<input type="submit" value="Delete"/>
+		
 		</c:when>
 		<c:otherwise>
 			<p>No film exists</p>
@@ -35,11 +39,11 @@
 	<form action="searchid.do" method="GET">
 		<input type="submit" value="Get Film" />
 	</form> 
+	</form>	  -->
 	
 
 	<form action="home.do" method="GET">
-		<input type="submit" value="Home" />
-	</form>	  -->
+		<input type="submit" value="Home"/>
 
 </body>
 </html>

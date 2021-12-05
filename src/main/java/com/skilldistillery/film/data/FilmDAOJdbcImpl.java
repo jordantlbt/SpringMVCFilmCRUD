@@ -123,7 +123,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 				String sql = "SELECT actor.id, actor.first_name, actor.last_name "
 						+ " FROM actor JOIN film_actor ON actor.id = film_actor.actor_id "
-						+ " JOIN film ON film.id = film_actor.film_id " + " WHERE film.id = ?";
+						+ " JOIN film ON film.id = film_actor.film_id WHERE film.id = ?";
 				PreparedStatement stmt = conn.prepareStatement(sql);
 				stmt.setInt(1, filmID);
 				ResultSet rs = stmt.executeQuery();

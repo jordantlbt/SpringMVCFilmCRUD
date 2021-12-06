@@ -35,6 +35,9 @@
 
 			</ul>
 				
+<form action="deletefilm.do" method="GET">
+   			<button type="submit" name="filmID" value= "${film.filmID}">Delete Film</button> 
+   			</form>
 			
 		</c:when>
 		<c:otherwise>
@@ -42,24 +45,9 @@
 		</c:otherwise>
 	</c:choose>
 <br>
-<form action="deletefilm.do" method="GET">
-   			<button type="submit" name="filmID" value= "${film.filmID}">Delete Film</button> 
-   			</form>
 
 <a href="updatefilm.do?filmID=${film.filmID}">Update Film</a>
 
-<%-- <form action="updatefilm.do?filmID=${film.filmID}" method="GET">
-<button type="submit" value="${film.filmID}">Update Film</button>
-
-</form> --%>
-			
-			
- 
-	<!-- <h3>Search Again</h3>
-	<form action="searchid.do" method="GET">
-		<input type="submit" value="Get Film" />
-	</form> 
-	</form>	  -->
 	
 	<a href="home.do">Home</a>
 	

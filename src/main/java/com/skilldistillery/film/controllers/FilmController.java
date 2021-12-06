@@ -3,10 +3,9 @@ package com.skilldistillery.film.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,9 +29,10 @@ public class FilmController {
 		return "createFilm";
 	}
 	@RequestMapping({"updatefilm.do"})
-	public String updateFilm() {
-//		HttpSession session = request.getSession();
-//		session.setAttribute();
+	public String updateFilm(Model model, int filmID) {
+		Film film = filmDao.findFilmByID(filmID);
+		model.addAttribute("film", film);
+		
 		return "updatefilm";
 	}
 //	searches filmDB by keyword 
@@ -82,15 +82,8 @@ public class FilmController {
 	
 	
 	  @RequestMapping(path = "updatefilm.do", method = RequestMethod.POST)
-	  public ModelAndView editFilm(String title, String description, int releaseYear, int languageId, String rating, String specialFeatures) {
+	  public ModelAndView editFilm(Film film) {
 		  ModelAndView mv = new ModelAndView();  
-		  Film film = new Film();
-		  film.setTitle(title);
-		  film.setDescription(description);
-		  film.setReleaseYear(releaseYear);
-		  film.setLanguageId(languageId);
-		  film.setRating(rating);
-		  film.setSpecialFeatures(specialFeatures);
 		  Film f = filmDao.updateFilm(film);
 		  filmDao.updateFilm(f);
 		  mv.addObject("film", f);

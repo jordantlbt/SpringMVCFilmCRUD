@@ -13,10 +13,10 @@
 		
 
 		
-		<label for="id">Film ID: ${film.filmID}"</label>
+		<label for="id">Film ID: ${film.filmID}</label>
 		<br>	
 		<form action="updatefilm.do" method=POST>
-		<input type = "hidden" name = "id" value = "${film.id }">
+		<input type = "hidden" name = "id" value = "${film.filmID }">
 		Title:
 		<input type="text" name="title" value="${film.title}" required /> <br>
 		<br>
@@ -63,8 +63,7 @@
 		<input type="checkbox" name="specialFeatures" value="Commentaries">
 		<label for="Commentaries">Commentaries</label> 
 		<br><br>
-	</form>
-		<form action="updatefilm.do" method="POST">
+			
    			<button type="submit" name="filmID" value= "${film.filmID}">Update Film</button> 
    			</form>
 		

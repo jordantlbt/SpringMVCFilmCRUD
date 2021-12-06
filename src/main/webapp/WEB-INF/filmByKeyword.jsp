@@ -36,10 +36,7 @@
    			<button type="submit" name="filmID" value= "${film.filmID}">Delete Film</button> 
    			</form>
 
-<form action="updatefilm.do" method="GET">
-<button type="submit" value="${film.filmID}">Update Film</button>
-
-</form>
+<a href="updatefilm.do?filmID=${film.filmID}">Update Film</a>
 
         
         

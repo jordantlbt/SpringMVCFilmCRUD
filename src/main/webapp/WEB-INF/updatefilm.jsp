@@ -10,12 +10,13 @@
 <body>
 
 	<h1>Update:</h1>
-	<form action="updatefilm.do" method=GET>
-		<h2>Film ID# - ${film.filmId}</h2>
 		
-		Film ID:
-		<input type="text" name="filmId" value="${film.filmId}" readonly /> <br>
+
+		
+		<label for="id">Film ID: ${film.filmID}"</label>
 		<br>	
+		<form action="updatefilm.do" method=POST>
+		<input type = "hidden" name = "id" value = "${film.id }">
 		Title:
 		<input type="text" name="title" value="${film.title}" required /> <br>
 		<br>
@@ -25,7 +26,7 @@
 		Release Year:
 		<input type="text" placeholder="YYYY" name="releaseYear" value="${film.releaseYear}" /> 
 		<br>
-		*Language:
+		Language:
 		<input type="radio" name="languageId" value="1">
 	 	<label for="languageID1">English</label>
 		<input type="radio" name="languageId" value="2">
@@ -63,14 +64,16 @@
 		<label for="Commentaries">Commentaries</label> 
 		<br><br>
 	</form>
-		<form action="updatefilm.do">
-			<input type="submit" value="Update Film" />
-		</form>
+		<form action="updatefilm.do" method="POST">
+   			<button type="submit" name="filmID" value= "${film.filmID}">Update Film</button> 
+   			</form>
+		
+		
 	<br> 
 	
 	<!-- Homepage link -->
 	<form action="home.do">
-		<input type="submit" value="Back">
+		<input type="submit" value="Home">
 	</form>
 	
 </body>

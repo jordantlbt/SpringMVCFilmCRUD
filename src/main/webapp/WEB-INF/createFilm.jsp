@@ -21,7 +21,7 @@
 		<input type="text" name="description" size="8"/> 
 	<br>	
 		*Release Year:
-		<input type="text" name="releaseYear" size="8"/> 
+		<input type="text" name="releaseYear" placeholder="YYYY" size="8"/> 
 	<br>
 	*Language:
 		<input type="radio" name="languageId" value="1">

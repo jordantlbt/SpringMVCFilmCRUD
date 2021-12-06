@@ -1,11 +1,17 @@
 package com.skilldistillery.film.controllers;
 
+
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.skilldistillery.film.data.FilmDAO;
 import com.skilldistillery.film.entities.Film;
 
@@ -25,6 +31,8 @@ public class FilmController {
 	}
 	@RequestMapping({"updatefilm.do"})
 	public String updateFilm() {
+//		HttpSession session = request.getSession();
+//		session.setAttribute();
 		return "updatefilm";
 	}
 //	searches filmDB by keyword 
@@ -62,15 +70,33 @@ public class FilmController {
 		return mv;
 	}
 //	prompts to update film
-	@RequestMapping(path = "updatefilm.do", method = RequestMethod.POST)
-	public ModelAndView updateFilm(@ModelAttribute("film") Film film) {
-		ModelAndView mv = new ModelAndView();
-		
-		filmDao.updateFilm(film);
-		mv.addObject("updatedfilm", film);
-		mv.setViewName("result");
-		return mv;
-	}
+//	@RequestMapping(path = "updatedfilm.do", method = RequestMethod.GET)
+//	public ModelAndView updateFilm(@ModelAttribute("film") Film film) {
+//		ModelAndView mv = new ModelAndView();
+//		
+//		filmDao.updateFilm(film);
+//		mv.addObject("updatedfilm", film);
+//		mv.setViewName("result");
+//		return mv;
+//	}
+	
+	
+	  @RequestMapping(path = "updatefilm.do", method = RequestMethod.POST)
+	  public ModelAndView editFilm(String title, String description, int releaseYear, int languageId, String rating, String specialFeatures) {
+		  ModelAndView mv = new ModelAndView();  
+		  Film film = new Film();
+		  film.setTitle(title);
+		  film.setDescription(description);
+		  film.setReleaseYear(releaseYear);
+		  film.setLanguageId(languageId);
+		  film.setRating(rating);
+		  film.setSpecialFeatures(specialFeatures);
+		  Film f = filmDao.updateFilm(film);
+		  filmDao.updateFilm(f);
+		  mv.addObject("film", f);
+		  mv.setViewName("result");
+		  return mv;
+	  }	
 	
 ////	view film properties
 //	@RequestMapping(path = "viewfilmprops.do", method = RequestMethod.POST)

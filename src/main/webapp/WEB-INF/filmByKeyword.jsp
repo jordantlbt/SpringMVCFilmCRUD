@@ -14,25 +14,26 @@
    
       <ul>
         <c:forEach var="film" items="${films}">
-     			<li>${film.filmID}</li>  <!--Film entity: filmID  -->
-				<li>${film.title}</li>
-				<li>${film.description}</li>
-				<li>${film.releaseYear}</li>
-				<li>${film.rentalDuration}</li>
-				<li>${film.rentalRate}</li>
-				<li>${film.length}</li>
-				<li>${film.replacementCost}</li>
-				<li>${film.rating}</li>
-				<li>${film.language}</li>
-				<li>${film.specialFeatures}</li>
-				<li>${film.category}</li> 
+      <br><br>
+     			<li>Film ID: ${film.filmID}</li>  <!--Film entity: filmID  -->
+				<li>Title: ${film.title}</li>
+				<li>Description: ${film.description}</li>
+				<li>Release Year: ${film.releaseYear}</li>
+				<li>Film Length: ${film.length}</li>
+				<li>Rating: ${film.rating}</li>
+				<li>Language: ${film.language}</li>
+				<li>Special Features: ${film.specialFeatures}</li>
+				<li>Category: ${film.category}</li> 
+				<li>Rental Duration: ${film.rentalDuration}</li>
+				<li>Rental Rate: ${film.rentalRate}</li>
+				<li>Replacement Cost: ${film.replacementCost}</li>
 				<c:forEach var="actor" items="${film.actors}">
 				<li>Actors: ${actor.firstName}, ${actor.lastName}</li> 
 				</c:forEach>
-      <br/><br/>
-<<<<<<< HEAD
+      <br/>
+
 <form action="deletefilm.do" method="GET">
-   			 <button type="submit" name="filmID" value= "${film.filmID}">Delete Film</button>
+   			<button type="submit" name="filmID" value= "${film.filmID}">Delete Film</button> 
    			</form>
 
 <form action="updatefilm.do" method="GET">
@@ -44,6 +45,7 @@
         
     </c:forEach>
       </ul>
+      <br><br>
       
 <a href="home.do">Home</a>
         

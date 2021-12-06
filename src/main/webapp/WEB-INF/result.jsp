@@ -20,7 +20,7 @@
 				<li>Rental Rate: ${film.rentalRate}</li>
 				<li>Film Length: ${film.length}</li> 
 				<li>Rating: ${film.rating}</li>
-				<!--  <li>Language: ${film.language}</li> -->
+				<li>Language: ${film.language}</li>
 				<li>Special Features: ${film.specialFeatures}</li>
 				
 				<li>Replacement Cost: ${film.replacementCost}</li> 
@@ -46,10 +46,12 @@
    			<button type="submit" name="filmID" value= "${film.filmID}">Delete Film</button> 
    			</form>
 
-<form action="updatefilm.do" method="GET">
+<a href="updatefilm.do?filmID=${film.filmID}">Update Film</a>
+
+<%-- <form action="updatefilm.do?filmID=${film.filmID}" method="GET">
 <button type="submit" value="${film.filmID}">Update Film</button>
 
-</form>
+</form> --%>
 			
 			
  

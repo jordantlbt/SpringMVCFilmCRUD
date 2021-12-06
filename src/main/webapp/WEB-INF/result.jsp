@@ -9,6 +9,7 @@
 </head>
 <body>
 	<c:choose>
+		
 		<c:when test="${! empty film}">
 			<ul>
 				<li>Film id: ${film.filmID}</li>  <!--Film entity: filmID  -->
@@ -31,19 +32,27 @@
 			<c:forEach var="actor" items="${film.actors}">
 				<li>Actors: ${actor.firstName}, ${actor.lastName}</li> 
 			</c:forEach>					
-			<br>					
-				<form action="deletefilm.do">
-				<button type="submit" name="filmID" value="${film.filmID}">Delete Film</button>
+	
 			</ul>
 				
-				</form>
+			
 		</c:when>
 		<c:otherwise>
 			<p>No film exists</p>
 		</c:otherwise>
 	</c:choose>
+<br>
+<form action="deletefilm.do" method="GET">
+   			<button type="submit" name="filmID" value= "${film.filmID}">Delete Film</button> 
+   			</form>
 
+<form action="updatefilm.do" method="GET">
+<button type="submit" value="${film.filmID}">Update Film</button>
 
+</form>
+			
+			
+ 
 	<!-- <h3>Search Again</h3>
 	<form action="searchid.do" method="GET">
 		<input type="submit" value="Get Film" />
@@ -51,6 +60,7 @@
 	</form>	  -->
 	
 	<a href="home.do">Home</a>
+	
 
 
 </body>

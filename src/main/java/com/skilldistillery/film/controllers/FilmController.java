@@ -23,6 +23,10 @@ public class FilmController {
 	public String createFilm() {
 		return "createFilm";
 	}
+	@RequestMapping({"updatefilm.do"})
+	public String updateFilm() {
+		return "updatefilm";
+	}
 //	searches filmDB by keyword 
 	@RequestMapping(path = "searchkeyword.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView getFilmByKeyword(String keyword) {
@@ -58,10 +62,12 @@ public class FilmController {
 		return mv;
 	}
 //	prompts to update film
-	@RequestMapping(path = "updatefilm.do", method = RequestMethod.GET)
+	@RequestMapping(path = "updatefilm.do", method = RequestMethod.POST)
 	public ModelAndView updateFilm(@ModelAttribute("film") Film film) {
 		ModelAndView mv = new ModelAndView();
+		
 		filmDao.updateFilm(film);
+		mv.addObject("updatedfilm", film);
 		mv.setViewName("result");
 		return mv;
 	}
@@ -85,15 +91,18 @@ public class FilmController {
 	public ModelAndView deletefilm(int filmID) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.findFilmByID(filmID);
-		filmDao.deleteFilm(film);
-		if(filmDao.findFilmByID(film.getfilmID()) == null) {
+		if(film != null) {
+			filmDao.deleteFilm(film);
+			mv.setViewName("unsuccessful"); //change redirected page
+			return mv;
+		}
+		film = filmDao.findCreatedFilmById(filmID);
+		if (film != null) {
+			filmDao.deleteFilm(film);
 			mv.setViewName("deleteFilm"); //change redirected page
 			return mv;
 		}
-
-			mv.setViewName("unsuccessful");
-			return mv;
-		
+		mv.setViewName("unsuccessful");
+		return mv;
 	}
-
 }

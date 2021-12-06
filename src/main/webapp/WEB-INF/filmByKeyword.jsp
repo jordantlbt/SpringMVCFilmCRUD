@@ -26,28 +26,25 @@
 				<li>${film.language}</li>
 				<li>${film.specialFeatures}</li>
 				<li>${film.category}</li> 
+				<c:forEach var="actor" items="${film.actors}">
+				<li>Actors: ${actor.firstName}, ${actor.lastName}</li> 
+				</c:forEach>
       <br/><br/>
-        <form action="updatefilm.do" method="GET">
-    <input type="submit" name="film" value= "${film.filmID}" /> 
-    <input type="Update Film"/>
-         </form>
-         <br/>
-  
-        <form action="deletefilm.do" method="POST">
-    <input type="submit" name="film" value= "${film.filmID }" /> 
-   <input type="Delete a Film" />
-    </form>
+<form action="deletefilm.do" method="GET">
+   			 <button type="submit" name="filmID" value= "${film.filmID}">Delete Film</button>
+   			</form>
+
+<form action="updatefilm.do" method="GET">
+<button type="submit" value="${film.filmID}">Update Film</button>
+
+</form>
  <br/>
         </li>
         
     </c:forEach>
       </ul>
       
-        <form action="searchid.do" method="GET">
-    <input type="submit" name="id" value= "${film.filmID }" /> 
-    <input type="Search Films"/>
-        </form>
-        <br/>
+<a href="home.do">Home</a>
         
  
       </c:when>

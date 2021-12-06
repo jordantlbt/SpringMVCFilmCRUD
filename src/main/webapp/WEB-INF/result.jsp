@@ -31,12 +31,14 @@
 			<c:forEach var="actor" items="${film.actors}">
 				<li>Actors: ${actor.firstName}, ${actor.lastName}</li> 
 			</c:forEach>					
-			<br>					
-				<form action="deletefilm.do">
-				<button type="submit" name="filmID" value="${film.filmID}">Delete Film</button>
+								
+			<form action="deletefilm.do" method="GET">Delete Film
+   			 <input type="submit" name="filmID" value= "${film.filmID}" /> 
+   			</form>
+ 
 			</ul>
 				
-				</form>
+			
 		</c:when>
 		<c:otherwise>
 			<p>No film exists</p>

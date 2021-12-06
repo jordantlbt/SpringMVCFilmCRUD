@@ -85,15 +85,19 @@ public class FilmController {
 	public ModelAndView deletefilm(int filmID) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDao.findFilmByID(filmID);
-		filmDao.deleteFilm(film);
-		if(filmDao.findFilmByID(film.getfilmID()) == null) {
+		System.err.println(film);
+		if(film != null) {
+			filmDao.deleteFilm(film);
 			mv.setViewName("deleteFilm"); //change redirected page
 			return mv;
 		}
-
-			mv.setViewName("unsuccessful");
+		film = filmDao.findCreatedFilmById(filmID);
+		if (film != null) {
+			filmDao.deleteFilm(film);
+			mv.setViewName("deleteFilm"); //change redirected page
 			return mv;
-		
+		}
+		mv.setViewName("unsuccessful");
+		return mv;
 	}
-
 }

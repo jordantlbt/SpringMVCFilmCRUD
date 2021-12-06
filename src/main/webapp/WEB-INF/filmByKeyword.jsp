@@ -29,16 +29,16 @@
       <br/><br/>
         <form action="updatefilm.do" method="GET">
     <input type="submit" name="film" value= "${film.filmID}" /> 
-    <input type="Update Film"/>
+   
          </form>
          <br/>
   
-        <form action="deletefilm.do" method="POST">
-    <input type="submit" name="film" value= "${film.filmID }" /> 
-   <input type="Delete a Film" />
+        <form action="deletefilm.do" method="GET">
+    <input type="submit" name="filmID" value= "${film.filmID}" /> 
+   
     </form>
  <br/>
-        </li>
+        
         
     </c:forEach>
       </ul>

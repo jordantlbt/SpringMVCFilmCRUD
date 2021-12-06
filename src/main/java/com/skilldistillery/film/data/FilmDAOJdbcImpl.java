@@ -19,7 +19,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 		private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 		private static final String user = "student";
-		private static final String pass = "student"; //change to student 
+		private static final String pass = "root"; //change to student 
 
 		static {
 			try {
@@ -78,6 +78,7 @@ public class FilmDAOJdbcImpl implements FilmDAO {
 
 			try {
 				Connection conn = DriverManager.getConnection(URL, user, pass);
+
 
 				String sql = "SELECT DISTINCT film.id, film.title, description, release_year, language_id, rental_duration,"
 						+ "rental_rate, length, replacement_cost, rating, special_features, category.name, film_category.category_id"

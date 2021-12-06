@@ -62,10 +62,10 @@
 		<input type="checkbox" name="specialFeatures" value="Commentaries">
 		<label for="Commentaries">Commentaries</label> 
 		<br><br>
+	</form>
 		<form action="updatefilm.do">
 			<input type="submit" value="Update Film" />
 		</form>
-	</form>
 	<br> 
 	
 	<!-- Homepage link -->

@@ -30,6 +30,7 @@
 				<li>Actors: ${actor.firstName}, ${actor.lastName}</li> 
 				</c:forEach>
       <br/><br/>
+<<<<<<< HEAD
 <form action="deletefilm.do" method="GET">
    			 <button type="submit" name="filmID" value= "${film.filmID}">Delete Film</button>
    			</form>
@@ -38,8 +39,8 @@
 <button type="submit" value="${film.filmID}">Update Film</button>
 
 </form>
- <br/>
-        </li>
+
+        
         
     </c:forEach>
       </ul>

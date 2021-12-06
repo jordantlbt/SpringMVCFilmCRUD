@@ -32,7 +32,7 @@
 			<c:forEach var="actor" items="${film.actors}">
 				<li>Actors: ${actor.firstName}, ${actor.lastName}</li> 
 			</c:forEach>					
-	
+
 			</ul>
 				
 			
